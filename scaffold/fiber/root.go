@@ -58,6 +58,10 @@ func (fp FiberProject) GenerateFiberProject() error {
 		return err
 	}
 
+	if err := fp.createMigrateFile(); err != nil {
+		return err
+	}
+
 	if err := fp.createENVGoFile(); err != nil {
 		return err
 	}
