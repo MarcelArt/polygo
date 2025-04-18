@@ -17,6 +17,8 @@ DB_PASSWORD=${dbPass}
 DB_NAME=${dbName}
 DB_HOST=${dbHost}
 DB_SCHEMA=${dbSchema}
+
+JWT_SECRET=${jwtSecret}
 `
 
 type ENVVar struct {
@@ -27,6 +29,7 @@ type ENVVar struct {
 	DBName     string
 	DBHost     string
 	DBSchema   string
+	JWTSecret  string
 }
 
 func CreateProjectDir(projectName string) error {
@@ -41,6 +44,7 @@ func CreateENVFile(env ENVVar, projectPath string) error {
 	envFile = strings.ReplaceAll(envFile, "${dbName}", env.DBName)
 	envFile = strings.ReplaceAll(envFile, "${dbHost}", env.DBHost)
 	envFile = strings.ReplaceAll(envFile, "${dbSchema}", env.DBSchema)
+	envFile = strings.ReplaceAll(envFile, "${jwtSecret}", env.JWTSecret)
 
 	path := fmt.Sprintf("%s/.env", projectPath)
 	return os.WriteFile(path, []byte(envFile), 0644)

@@ -7,6 +7,7 @@ import (
 
 	"github.com/MarcelArt/polygo/components"
 	"github.com/MarcelArt/polygo/scaffold"
+	"github.com/MarcelArt/polygo/utils"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -159,6 +160,7 @@ func main() {
 			DBName:     dbName,
 			DBHost:     dbHost,
 			DBSchema:   dbSchema,
+			JWTSecret:  utils.RandString(32),
 		},
 		projectName,
 	)
