@@ -79,7 +79,12 @@ func main() {
 		projectName,
 	)
 
-	if err := scaffold.CreateProjectBasedOnChoice(framework, db, projectName); err != nil {
+	if err := scaffold.CreateProjectBasedOnChoice(framework, db, projectName, moduleName); err != nil {
 		log.Fatal(err)
 	}
+
+	fmt.Printf("Project %s created successfully\nRun:\n", projectName)
+	fmt.Printf("1. cd %s\n", projectName)
+	fmt.Printf("2. go mod tidy\n")
+	fmt.Println("To get started")
 }

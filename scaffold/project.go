@@ -42,12 +42,12 @@ func GenerateModuleName(projectName string) (string, error) {
 
 }
 
-func CreateProjectBasedOnChoice(framework string, db string, projectName string) error {
+func CreateProjectBasedOnChoice(framework string, db string, projectName string, moduleName string) error {
 	switch framework {
 	case "Fiber":
 		fp := fiber.FiberProject{
 			ProjectName: projectName,
-			ModuleName:  projectName,
+			ModuleName:  moduleName,
 			Directory:   projectName,
 		}
 
