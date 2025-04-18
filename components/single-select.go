@@ -2,7 +2,6 @@ package components
 
 import (
 	"fmt"
-	"log"
 
 	tea "github.com/charmbracelet/bubbletea"
 )
@@ -32,7 +31,6 @@ func (m SingleSelect) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			}
 		case tea.KeyEnter:
 			*m.Value = m.Choices[m.cursor]
-			log.Println(*m.Value)
 			return m, tea.Quit
 		}
 	}
