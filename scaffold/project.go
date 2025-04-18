@@ -10,10 +10,23 @@ import (
 
 const envTemplate = `# Generated file
 PORT=${port}
+
+DB_PORT=${dbPort}
+DB_USER=${dbUser}
+DB_PASSWORD=${dbPass}
+DB_NAME=${dbName}
+DB_HOST=${dbHost}
+DB_SCHEMA=${dbSchema}
 `
 
 type ENVVar struct {
-	Port string
+	Port       string
+	DBPort     string
+	DBUser     string
+	DBPassword string
+	DBName     string
+	DBHost     string
+	DBSchema   string
 }
 
 func CreateProjectDir(projectName string) error {
@@ -22,6 +35,13 @@ func CreateProjectDir(projectName string) error {
 
 func CreateENVFile(env ENVVar, projectPath string) error {
 	envFile := strings.ReplaceAll(envTemplate, "${port}", env.Port)
+	envFile = strings.ReplaceAll(envFile, "${dbPort}", env.DBPort)
+	envFile = strings.ReplaceAll(envFile, "${dbUser}", env.DBUser)
+	envFile = strings.ReplaceAll(envFile, "${dbPass}", env.DBPassword)
+	envFile = strings.ReplaceAll(envFile, "${dbName}", env.DBName)
+	envFile = strings.ReplaceAll(envFile, "${dbHost}", env.DBHost)
+	envFile = strings.ReplaceAll(envFile, "${dbSchema}", env.DBSchema)
+
 	path := fmt.Sprintf("%s/.env", projectPath)
 	return os.WriteFile(path, []byte(envFile), 0644)
 }

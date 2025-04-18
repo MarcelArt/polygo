@@ -12,6 +12,7 @@ type TextInput struct {
 	Label       string
 	textInput   textinput.Model
 	Value       *string
+	Type        string
 }
 
 func NewTextInput(props TextInput) TextInput {
@@ -20,6 +21,10 @@ func NewTextInput(props TextInput) TextInput {
 	ti.Focus()
 	ti.CharLimit = 156
 	ti.Width = 50
+	if props.Type == "password" {
+		ti.EchoMode = textinput.EchoPassword
+		ti.EchoCharacter = '*'
+	}
 	props.textInput = ti
 
 	return props

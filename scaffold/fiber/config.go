@@ -23,6 +23,7 @@ type env struct {
 	DBPassword   string
 	DBName       string
 	DBHost       string
+	DBSchema       string
 	JwtSecret    string
 	ServerENV    string
 }
@@ -42,6 +43,7 @@ func SetupENV() {
 		DBPassword:   os.Getenv("DB_PASSWORD"),
 		DBName:       os.Getenv("DB_NAME"),
 		DBHost:       os.Getenv("DB_HOST"),
+		DBSchema:       os.Getenv("DB_SCHEMA"),
 		JwtSecret:    os.Getenv("JWT_SECRET"),
 		ServerENV:    os.Getenv("SERVER_ENV"),
 	}
