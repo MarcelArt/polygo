@@ -44,9 +44,9 @@ func (m *AuthMiddleware) ProtectedAPI(c *fiber.Ctx) error {
 func (fp FiberProject) createMiddlewareFiles() error {
 	authMidllewareFileBody := strings.ReplaceAll(authMiddlewareFileTemplate, "${moduleName}", fp.ModuleName)
 
-	if err := os.Mkdir(fmt.Sprintf("%s/middlewares", fp.ModuleName), 0755); err != nil {
+	if err := os.Mkdir(fmt.Sprintf("%s/middlewares", fp.Directory), 0755); err != nil {
 		return err
 	}
 
-	return os.WriteFile(fmt.Sprintf("%s/middlewares/auth.middleware.go", fp.ModuleName), []byte(authMidllewareFileBody), 0644)
+	return os.WriteFile(fmt.Sprintf("%s/middlewares/auth.middleware.go", fp.Directory), []byte(authMidllewareFileBody), 0644)
 }
