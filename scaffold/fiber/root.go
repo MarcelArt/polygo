@@ -86,6 +86,10 @@ func (fp FiberProject) GenerateFiberProject() error {
 		return err
 	}
 
+	if err := fp.createUtilFiles(); err != nil {
+		return err
+	}
+
 	return nil
 }
 

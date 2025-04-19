@@ -165,8 +165,7 @@ func (h *UserHandler) Create(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(models.NewJSONResponse(err, ""))
 	}
 
-	user.Salt = utils.RandString(10)
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password+user.Salt), bcrypt.DefaultCost)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return c.Status(utils.StatusCodeByError(err)).JSON(models.NewJSONResponse(err, ""))
 	}
@@ -222,8 +221,7 @@ func (h *UserHandler) Update(c *fiber.Ctx) error {
 	// }
 
 	if user.Password != "" {
-		user.Salt = utils.RandString(10)
-		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password+user.Salt), bcrypt.DefaultCost)
+		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 		if err != nil {
 			return c.Status(utils.StatusCodeByError(err)).JSON(models.NewJSONResponse(err, ""))
 		}
@@ -294,7 +292,7 @@ func (h *UserHandler) Login(c *fiber.Ctx) error {
 		return c.Status(utils.StatusCodeByError(err)).JSON(models.NewJSONResponse(err, "Username or password is incorrect"))
 	}
 
-	err = bcrypt.CompareHashAndPassword([]byte(userDB.Password), []byte(user.Password+userDB.Salt))
+	err = bcrypt.CompareHashAndPassword([]byte(userDB.Password), []byte(user.Password))
 	if err != nil {
 		return c.Status(utils.StatusCodeByError(err)).JSON(models.NewJSONResponse(err, "Username or password is incorrect"))
 	}
