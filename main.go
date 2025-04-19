@@ -174,7 +174,7 @@ func main() {
 
 	fmt.Printf("Project %s created successfully\nRun:\n", projectName)
 	fmt.Printf("1. cd %s\n", projectName)
-	fmt.Printf("2. go mod init\n")
+	fmt.Printf("2. go mod init %s\n", moduleName)
 	fmt.Printf("3. go mod tidy\n")
 	fmt.Printf("4. Uncomment `// _ %s/docs` in main.go file\n", moduleName)
 	fmt.Printf("5. Run: swag init --parseInternal --parseDependency\n")
