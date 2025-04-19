@@ -133,6 +133,9 @@ func main() {
 			os.Exit(1)
 		}
 		fmt.Println("")
+	} else {
+		fmt.Printf("\n%s is not supported yet.", db)
+		os.Exit(0)
 	}
 
 	moduleName, err := scaffold.GenerateModuleName(projectName)
