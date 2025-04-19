@@ -90,6 +90,10 @@ func (fp FiberProject) GenerateFiberProject() error {
 		return err
 	}
 
+	if err := fp.createMiddlewareFiles(); err != nil {
+		return err
+	}
+
 	return nil
 }
 
