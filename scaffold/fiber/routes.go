@@ -30,7 +30,7 @@ import (
 func SetupRoutes(app *fiber.App) {
 	app.Use(cors.New())
 
-	file, err := os.OpenFile("./model-craft.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	file, err := os.OpenFile("./${projectName}.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
 	}
@@ -124,6 +124,7 @@ func SetupAuthorizedDeviceRoutes(api fiber.Router, auth *middlewares.AuthMiddlew
 
 func (fp FiberProject) createRouteFiles() error {
 	routeFileBody := strings.ReplaceAll(routeFileTemplate, "${moduleName}", fp.ModuleName)
+	routeFileBody = strings.ReplaceAll(routeFileBody, "${projectName}", fp.ProjectName)
 	apiUserRouteFileBody := strings.ReplaceAll(apiUserRouteFileTemplate, "${moduleName}", fp.ModuleName)
 	apiAuthDeviceRouteFileBody := strings.ReplaceAll(apiAuthDeviceRouteFileTemplate, "${moduleName}", fp.ModuleName)
 
