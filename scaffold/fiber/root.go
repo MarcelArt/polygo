@@ -74,6 +74,10 @@ func (fp FiberProject) GenerateFiberProject() error {
 		return err
 	}
 
+	if err := fp.createRouteFiles(); err != nil {
+		return err
+	}
+
 	return nil
 }
 
