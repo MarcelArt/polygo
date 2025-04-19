@@ -38,9 +38,9 @@ import (
 	"fmt"
 	"log"
 
-	"${moduleName}/internal/config"
-	"${moduleName}/internal/database"
-	"${moduleName}/internal/routes"
+	"${moduleName}/config"
+	"${moduleName}/database"
+	"${moduleName}/routes"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -63,8 +63,8 @@ package cmd
 import (
 	"os"
 
-	"${moduleName}/internal/config"
-	"${moduleName}/internal/database"
+	"${moduleName}/config"
+	"${moduleName}/database"
 )
 
 func Migrate(arg string) {
@@ -88,11 +88,11 @@ func Migrate(arg string) {
 func (fp FiberProject) createCMDManagerFile() error {
 	cmdFileBody := cmdManagerFileTemplate
 
-	if err := os.Mkdir(fmt.Sprintf("%s/internal/cmd", fp.Directory), 0755); err != nil {
+	if err := os.Mkdir(fmt.Sprintf("%s/cmd", fp.Directory), 0755); err != nil {
 		return err
 	}
 
-	if err := os.WriteFile(fmt.Sprintf("%s/internal/cmd/manager.go", fp.Directory), []byte(cmdFileBody), 0644); err != nil {
+	if err := os.WriteFile(fmt.Sprintf("%s/cmd/manager.go", fp.Directory), []byte(cmdFileBody), 0644); err != nil {
 		return err
 	}
 
@@ -102,7 +102,7 @@ func (fp FiberProject) createCMDManagerFile() error {
 func (fp FiberProject) createServeFile() error {
 	serveFileBody := strings.ReplaceAll(serveFileTemplate, "${moduleName}", fp.ModuleName)
 
-	if err := os.WriteFile(fmt.Sprintf("%s/internal/cmd/serve.go", fp.Directory), []byte(serveFileBody), 0644); err != nil {
+	if err := os.WriteFile(fmt.Sprintf("%s/cmd/serve.go", fp.Directory), []byte(serveFileBody), 0644); err != nil {
 		return err
 	}
 
@@ -112,7 +112,7 @@ func (fp FiberProject) createServeFile() error {
 func (fp FiberProject) createMigrateFile() error {
 	migrateFileBody := strings.ReplaceAll(migrateFileTemplate, "${moduleName}", fp.ModuleName)
 
-	if err := os.WriteFile(fmt.Sprintf("%s/internal/cmd/migrate.go", fp.Directory), []byte(migrateFileBody), 0644); err != nil {
+	if err := os.WriteFile(fmt.Sprintf("%s/cmd/migrate.go", fp.Directory), []byte(migrateFileBody), 0644); err != nil {
 		return err
 	}
 

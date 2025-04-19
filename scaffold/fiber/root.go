@@ -12,7 +12,7 @@ package main
 import (
 	"os"
 
-	"${moduleName}/internal/cmd"
+	"${moduleName}/cmd"
 	_ "${moduleName}/docs"
 )
 
@@ -84,10 +84,10 @@ func (fp FiberProject) GenerateFiberProject() error {
 func (fp FiberProject) createMainFile() error {
 	mainFileBody := strings.ReplaceAll(mainFileTemplate, "${moduleName}", fp.ModuleName)
 
-	if err := os.Mkdir(fmt.Sprintf("%s/internal", fp.Directory), 0755); err != nil {
-		return err
-	}
+	// if err := os.Mkdir(fmt.Sprintf("%s", fp.Directory), 0755); err != nil {
+	// 	return err
+	// }
 
-	mainFilePath := fmt.Sprintf("%s/internal/main.go", fp.Directory)
+	mainFilePath := fmt.Sprintf("%s/main.go", fp.Directory)
 	return os.WriteFile(mainFilePath, []byte(mainFileBody), 0644)
 }

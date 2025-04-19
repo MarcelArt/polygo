@@ -13,8 +13,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"${moduleName}/internal/config"
-	"${moduleName}/internal/models"
+	"${moduleName}/config"
+	"${moduleName}/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -70,9 +70,9 @@ func DropDB() error {
 func (fp FiberProject) createPostgresFile() error {
 	postgresFileBody := strings.ReplaceAll(postgresFileTemplate, "${moduleName}", fp.ModuleName)
 
-	if err := os.Mkdir(fmt.Sprintf("%s/internal/database", fp.Directory), 0755); err != nil {
+	if err := os.Mkdir(fmt.Sprintf("%s/database", fp.Directory), 0755); err != nil {
 		return err
 	}
 
-	return os.WriteFile(fmt.Sprintf("%s/internal/database/postgres.go", fp.Directory), []byte(postgresFileBody), 0644)
+	return os.WriteFile(fmt.Sprintf("%s/database/postgres.go", fp.Directory), []byte(postgresFileBody), 0644)
 }

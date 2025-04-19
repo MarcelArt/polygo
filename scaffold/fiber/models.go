@@ -144,21 +144,21 @@ func (AuthorizedDeviceDTO) TableName() string {
 `
 
 func (fp FiberProject) createModelFiles() error {
-	if err := os.Mkdir(fmt.Sprintf("%s/internal/models", fp.Directory), 0755); err != nil {
+	if err := os.Mkdir(fmt.Sprintf("%s/models", fp.Directory), 0755); err != nil {
 		return err
 	}
 
-	if err := os.WriteFile(fmt.Sprintf("%s/internal/models/dto.model.go", fp.Directory), []byte(dtoModelFileTemplate), 0644); err != nil {
+	if err := os.WriteFile(fmt.Sprintf("%s/models/dto.model.go", fp.Directory), []byte(dtoModelFileTemplate), 0644); err != nil {
 		return err
 	}
 
-	if err := os.WriteFile(fmt.Sprintf("%s/internal/models/response.model.go", fp.Directory), []byte(responseModelFileTemplate), 0644); err != nil {
+	if err := os.WriteFile(fmt.Sprintf("%s/models/response.model.go", fp.Directory), []byte(responseModelFileTemplate), 0644); err != nil {
 		return err
 	}
 
-	if err := os.WriteFile(fmt.Sprintf("%s/internal/models/user.model.go", fp.Directory), []byte(userModelFileTemplate), 0644); err != nil {
+	if err := os.WriteFile(fmt.Sprintf("%s/models/user.model.go", fp.Directory), []byte(userModelFileTemplate), 0644); err != nil {
 		return err
 	}
 
-	return os.WriteFile(fmt.Sprintf("%s/internal/models/authorized_device.model.go", fp.Directory), []byte(authDeviceModelFileTemplate), 0644)
+	return os.WriteFile(fmt.Sprintf("%s/models/authorized_device.model.go", fp.Directory), []byte(authDeviceModelFileTemplate), 0644)
 }

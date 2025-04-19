@@ -50,9 +50,9 @@ func SetupENV() {
 `
 
 func (fp FiberProject) createENVGoFile() error {
-	if err := os.Mkdir(fmt.Sprintf("%s/internal/config", fp.Directory), 0755); err != nil {
+	if err := os.Mkdir(fmt.Sprintf("%s/config", fp.Directory), 0755); err != nil {
 		return err
 	}
 
-	return os.WriteFile(fmt.Sprintf("%s/internal/config/env.go", fp.Directory), []byte(envFileTemplate), 0644)
+	return os.WriteFile(fmt.Sprintf("%s/config/env.go", fp.Directory), []byte(envFileTemplate), 0644)
 }
