@@ -112,7 +112,6 @@ package api_handlers
 
 import (
 	"errors"
-	"log"
 	"strconv"
 	"time"
 
