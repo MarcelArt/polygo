@@ -119,7 +119,6 @@ import (
 
 	"${moduleName}/models"
 	"${moduleName}/repositories"
-	"${moduleName}/services"
 	"${moduleName}/utils"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
@@ -174,15 +173,6 @@ func (h *UserHandler) Create(c *fiber.Ctx) error {
 	user.Password = string(hashedPassword)
 
 	id, err := h.repo.Create(user)
-	if err != nil {
-		return c.Status(utils.StatusCodeByError(err)).JSON(models.NewJSONResponse(err, ""))
-	}
-
-	err = h.mService.SendMail(services.Mailer{
-		To:      []string{user.Email},
-		Subject: "Email Verification",
-		Body:    fmt.Sprintf("Please verify your email by clicking this link: <a href='%s/api/user/verify/%d'>Verify</a>", c.BaseURL(), id),
-	})
 	if err != nil {
 		return c.Status(utils.StatusCodeByError(err)).JSON(models.NewJSONResponse(err, ""))
 	}

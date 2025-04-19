@@ -71,7 +71,6 @@ type User struct {
 	Email      string    ` + "`" + `json:"email" gorm:"unique;not null" validate:"email"` + "`" + `
 	Password   string    ` + "`" + `json:"-" gorm:"not null" validate:"min=8"` + "`" + `
 	Salt       string    ` + "`" + `json:"-" gorm:"not null"` + "`" + `
-	VerifiedAt time.Time ` + "`" + `json:"verifiedAt"` + "`" + `
 }
 
 type UserDTO struct {
