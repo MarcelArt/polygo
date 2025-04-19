@@ -46,9 +46,6 @@ type FiberProject struct {
 }
 
 func (fp FiberProject) GenerateFiberProject() error {
-	if err := fp.createMainFile(); err != nil {
-		return err
-	}
 
 	if err := fp.createCMDManagerFile(); err != nil {
 		return err
@@ -95,6 +92,10 @@ func (fp FiberProject) GenerateFiberProject() error {
 	}
 
 	if err := fp.createTimeEnumFiles(); err != nil {
+		return err
+	}
+
+	if err := fp.createMainFile(); err != nil {
 		return err
 	}
 

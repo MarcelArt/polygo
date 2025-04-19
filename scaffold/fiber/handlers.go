@@ -112,7 +112,6 @@ package api_handlers
 
 import (
 	"errors"
-	"fmt"
 	"log"
 	"strconv"
 	"time"
@@ -399,17 +398,6 @@ func (h *UserHandler) Refresh(c *fiber.Ctx) error {
 		AccessToken:  accessToken,
 		RefreshToken: refreshToken,
 	}, "Tokens refreshed successfully"))
-}
-
-func (h *UserHandler) Verify(c *fiber.Ctx) error {
-	id := c.Params("id")
-	err := h.repo.Verify(id)
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(models.NewJSONResponse(err, ""))
-	}
-
-	log.Println("User verified")
-	return c.Redirect("/")
 }
 `
 
