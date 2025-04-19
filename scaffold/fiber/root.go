@@ -13,7 +13,7 @@ import (
 	"os"
 
 	"${moduleName}/cmd"
-	_ "${moduleName}/docs"
+	// _ "${moduleName}/docs"
 )
 
 // @title Fiber Example API
