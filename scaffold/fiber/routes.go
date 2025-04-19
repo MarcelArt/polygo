@@ -77,7 +77,6 @@ import (
 	api_handlers "${moduleName}/handlers/api"
 	"${moduleName}/middlewares"
 	"${moduleName}/repositories"
-	"${moduleName}/services"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -85,7 +84,6 @@ func SetupUserRoutes(api fiber.Router, auth *middlewares.AuthMiddleware) {
 	h := api_handlers.NewUserHandler(
 		repositories.NewUserRepo(database.GetDB()),
 		repositories.NewAuthorizedDeviceRepo(database.GetDB()),
-		services.NewMailService(),
 	)
 
 	g := api.Group("/user")
