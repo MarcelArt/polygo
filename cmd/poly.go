@@ -168,6 +168,7 @@ func Polygo() {
 		},
 		projectName,
 	)
+	scaffold.CreateGitIgnoreFile(projectName)
 
 	if err := scaffold.CreateProjectBasedOnChoice(framework, db, projectName, moduleName); err != nil {
 		log.Fatal(err)

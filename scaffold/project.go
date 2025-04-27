@@ -21,6 +21,38 @@ DB_SCHEMA=${dbSchema}
 JWT_SECRET=${jwtSecret}
 `
 
+const gitIgnoreTemplate = `# Generated file
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with go test -c
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+
+docs/*
+
+.env
+
+tmp/*
+
+*.log
+`
+
 type ENVVar struct {
 	Port       string
 	DBPort     string
@@ -48,6 +80,11 @@ func CreateENVFile(env ENVVar, projectPath string) error {
 
 	path := fmt.Sprintf("%s/.env", projectPath)
 	return os.WriteFile(path, []byte(envFile), 0644)
+}
+
+func CreateGitIgnoreFile(projectPath string) error {
+	path := fmt.Sprintf("%s/.gitignore", projectPath)
+	return os.WriteFile(path, []byte(gitIgnoreTemplate), 0644)
 }
 
 func GenerateModuleName(projectName string) (string, error) {
