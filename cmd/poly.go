@@ -13,13 +13,12 @@ import (
 )
 
 func Polygo() {
-	var projectName string
-
 	currentDir, err := utils.PWD()
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	var projectName string
 	projectNameStep := tea.NewProgram(components.NewTextInput(components.TextInput{
 		Value:       &projectName,
 		Placeholder: "my-golang-backend",
