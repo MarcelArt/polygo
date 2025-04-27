@@ -5,7 +5,9 @@ import (
 	"os"
 	"strings"
 
+	"github.com/MarcelArt/polygo/models"
 	"github.com/MarcelArt/polygo/scaffold/fiber"
+	"github.com/pelletier/go-toml/v2"
 )
 
 const envTemplate = `# Generated file
@@ -116,4 +118,18 @@ func CreateProjectBasedOnChoice(framework string, db string, projectName string,
 	}
 
 	return nil
+}
+
+func CreatePolygoTOML(moduleName string, projectPath string) error {
+	polygoTOML := models.PolygoTOML{
+		ModuleName: moduleName,
+	}
+
+	buf, err := toml.Marshal(polygoTOML)
+	if err != nil {
+		return err
+	}
+
+	path := fmt.Sprintf("%s/polygo.toml", projectPath)
+	return os.WriteFile(path, buf, 0644)
 }

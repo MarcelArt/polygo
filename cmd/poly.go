@@ -174,6 +174,7 @@ func Polygo() {
 		projectName,
 	)
 	scaffold.CreateGitIgnoreFile(projectName)
+	scaffold.CreatePolygoTOML(moduleName, projectName)
 
 	if err := scaffold.CreateProjectBasedOnChoice(framework, db, projectName, moduleName); err != nil {
 		utils.RM(currentDir)
