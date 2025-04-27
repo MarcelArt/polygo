@@ -14,6 +14,12 @@ import (
 
 func Polygo() {
 	var projectName string
+
+	currentDir, err := utils.PWD()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	projectNameStep := tea.NewProgram(components.NewTextInput(components.TextInput{
 		Value:       &projectName,
 		Placeholder: "my-golang-backend",
@@ -171,6 +177,7 @@ func Polygo() {
 	scaffold.CreateGitIgnoreFile(projectName)
 
 	if err := scaffold.CreateProjectBasedOnChoice(framework, db, projectName, moduleName); err != nil {
+		utils.RM(currentDir)
 		log.Fatal(err)
 	}
 
