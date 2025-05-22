@@ -15,6 +15,9 @@ func Manager(args []string) {
 			os.Exit(1)
 		}
 		Scaffolder(args[2])
+	case "version":
+		Version()
+		os.Exit(0)
 	default:
 		fmt.Println("Unknown command")
 		os.Exit(1)
